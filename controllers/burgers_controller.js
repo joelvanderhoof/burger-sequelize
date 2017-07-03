@@ -13,18 +13,28 @@ router.get("/", (req, res) => {
         });
     })
     .post("/", (req, res) => {
-        console.log(req.body);
-        db.burgerSequelize.create(req.body,
-            (result) => {
+        //console.log(req.body);
+        db.burgerSequelize.create(req.body)
+        .then(
+            () => {
                 res.redirect("/");
             }
         );
     })
     .put("/:id?", (req, res) => {
         var id = parseInt(req.params.id);
-        console.log(req.params.id);
-        db.burgerSequelize.update(id, 
-            (result) => {
+        var devoured = Boolean(req.body.devoured);
+        db.burgerSequelize.update(
+            {
+                devoured: req.body.devoured
+            }, 
+            {
+                where: {
+                    id: id
+                }
+            }
+        ).then(
+            () => {
                 res.redirect("/");
             }
         );

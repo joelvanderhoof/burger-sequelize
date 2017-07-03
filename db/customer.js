@@ -10,13 +10,13 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
-  customer.association = (models) => {
-    customer.hasMany(models.burgers, {
-      onDelete: "CASCADE",
-      foreignKey: {
-        allowNull: false
-      }
-    });
-  }
+//   customer.association = (models) => {
+//     customer.hasMany(models.burgers, {
+//       onDelete: "CASCADE",
+//       foreignKey: {
+//         allowNull: false
+//       }
+//     });
+//   }
   return customer;
 };
